@@ -9,21 +9,44 @@ Tambahkan parameter untuk memastikan bahwa argumen yang dimasukan adalah celcius
 
 '''
 
-def kelvin_to_celcius(temp_k):
-    temp_c = temp_k - 273.15
-    print(temp_c)
-    return temp_c
+#Fungsi 1 - Konversi Celcius ke Kelvin
+def c_to_k(celcius):
+    kelvin = celcius + 273.15
+    return kelvin
 
-def celcius_to_kelvin(temp_c):
-    temp_k = temp_c + 273.15
-    print(temp_k)
-    return temp_k
+#Fungsi 2 - Konversi Kelvin ke Celcius
+def k_to_c(kelvin):
+    celcius = kelvin - 273.15
+    return celcius
 
-def CelcKelv_to_fahrenheit(temp_c = 0, temp_k = 0):
-    temp_fc = 9/5*(temp_c) + 32
-    temp_fk = 9/5*(kelvin_to_celcius(temp_k)) + 32
-    print(temp_fc, " and ", temp_fk)
+# #Fungsi 3 - Konversi C/K ke Fahrenheit (Unit equals C or K)
+def ck_to_f(temp , unit):
+    if unit == 'C' or unit == 'K':
+        if unit == 'C' and temp > -273.15:
+            tempF = temp * 9/5 + 32
+            print("Temperature in Fahrenheit is {:.2f} °F". format(tempF))
+        elif unit == 'K' and temp > 0:
+            tempF = k_to_c(temp) * 9/5 + 32
+            print("Temperature in Fahrenheit is {:.2f} °F". format(tempF))
+        elif unit == 'C': 
+            print("Celcius value must be greater than -273.15 °C")
+        else:
+            print("Kelvin value must be greater than 0 K")
 
-celcius_to_kelvin(285.273)
-kelvin_to_celcius(60.85)
-CelcKelv_to_fahrenheit(100)
+    else:
+        print("Unit must be 'C' or 'K'")
+
+#Jalankan fungsi 3
+ck_to_f(373.15, 'K')
+
+#Fungsi 4 - Konversi Fahrenheit ke C dan K
+def f_to_ck(temp_F):
+    tempC = (temp_F - 32) * 5/9
+    tempK = c_to_k(tempC)
+    if tempC > -273.15 and tempK > 0:
+        print("Temperature in Celcius is {:.2f} °C". format(tempC))
+        print("Temperature in Kelvin is {:.2f} K". format(tempK))
+    else:
+        print("Fahrenheit value must be greater than -459.67")
+#Jalankan fungsi 4
+f_to_ck(212)
