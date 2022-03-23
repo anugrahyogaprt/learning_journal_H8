@@ -1,4 +1,3 @@
-from re import L
 import numpy as np
 from numpy.linalg import inv, det
 #Number 1
@@ -10,7 +9,7 @@ print('++'*20)
 #Number 2
 mat_a = np.array([[23, 50, 19], [7, 12, 109],[57, 67, 98]])
 mat_b = np.array([17, 22, 19])
-print(mat_a * mat_b)
+print(mat_a @ mat_b)
 
 print('++'*20)
 print(mat_a.T)
