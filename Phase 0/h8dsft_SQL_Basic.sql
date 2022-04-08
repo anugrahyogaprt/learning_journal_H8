@@ -60,14 +60,13 @@ INSERT INTO courses (name, teachers_id, total_students)
             ('Biology', 14, 25),
             ('Calculus', 15, 20);             
 
--- SELECT * 
--- FROM teachers t
--- join courses c on t.id = c.teachers_id
--- ORDER BY name ASC
-
-
-SELECT t.id, t.first_name, t.last_name, t.school, t.hire_date, MAX(t.salary), c.id, c.name, c.teachers_id, c.total_students
-FROM teachers t
-JOIN courses c ON t.id=c.teachers_id
-GROUP BY c.name
-ORDER BY c.name ASC
+select * 
+from teachers t
+join courses c on t.id = c.teachers_id
+where (c.name, t.salary) in (
+  select name, max(salary)
+  from teachers tc
+  JOIN courses cr on tc.id = cr.teachers_id
+  group by name
+ )
+ order by c.name asc;
